@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="uniformedsearch:ear exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/uniformedsearch_ear_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="uniformedsearch/javaeeApplication/javaEEApplication" />
+    </root>
+  </artifact>
+</component>

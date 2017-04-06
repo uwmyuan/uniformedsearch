@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="234.0" y="288.0">Vertex</node>
+    <node x="181.0" y="0.0">VertexInterface</node>
+    <node x="572.0" y="623.0">VertexMC</node>
+    <node x="288.0" y="727.0">Vertex.Edge</node>
+    <node x="1104.0" y="368.0">DirectedGraph</node>
+    <node x="0.0" y="738.5">Vertex.NeighborIterator</node>
+    <node x="1357.0" y="92.5">GraphAlgorithmsInterface</node>
+    <node x="1254.0" y="288.0">GraphInterface</node>
+    <node x="1021.0" y="0.0">BasicGraphInterface</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="GraphInterface" target="GraphAlgorithmsInterface">
+      <point x="29.75" y="-15.0" />
+      <point x="1343.25" y="263.0" />
+      <point x="1448.0" y="263.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="VertexMC" target="Vertex">
+      <point x="0.0" y="-165.5" />
+      <point x="774.0" y="598.0" />
+      <point x="544.0" y="598.0" />
+      <point x="124.0" y="142.5" />
+    </edge>
+    <edge source="GraphInterface" target="BasicGraphInterface">
+      <point x="-29.75" y="-15.0" />
+      <point x="1283.75" y="263.0" />
+      <point x="1179.0" y="263.0" />
+      <point x="0.0" y="119.0" />
+    </edge>
+    <edge source="DirectedGraph" target="GraphInterface">
+      <point x="0.0" y="-165.5" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="Vertex" target="VertexInterface">
+      <point x="0.0" y="-142.5" />
+      <point x="0.0" y="119.0" />
+    </edge>
+    <edge source="Vertex.NeighborIterator" target="Vertex">
+      <point x="0.0" y="-50.0" />
+      <point x="134.0" y="598.0" />
+      <point x="296.0" y="598.0" />
+      <point x="-124.0" y="142.5" />
+    </edge>
+    <edge source="Vertex.Edge" target="Vertex">
+      <point x="0.0" y="-61.5" />
+      <point x="0.0" y="142.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8829568788501027" x="769.5" y="477.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
