@@ -90,7 +90,7 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
     public int Dijkstra(T begin, T end) {
         long preTime = System.currentTimeMillis();
 
-        //initialize g-value for each vertex
+        //initialize f-value for each vertex
         resetVertices();
 
         //the status of the algorithm
@@ -112,14 +112,12 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
         try {
             beginVertex = vertices.get(begin);
 
-            //set the g-value of the origin to zero and add the origin into PQ
-            beginVertex.setCost(0);
+            //set the f-value of the origin to zero and add the origin into PQ
+            beginVertex.setCost(beginVertex.getHeuristic());
             vertexQueue.add(beginVertex);
-
             String[] labelGroup = ((String) end).split(" ");
             for (String str : labelGroup)
                 endVertices.add(vertices.get(str));
-            System.out.println(endVertices.get(0).getLabel());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,6 +193,11 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
             System.out.println("The running time is " + (System.currentTimeMillis() - preTime) + "ms");
             return 0;//return 0 for success
         }
+    }
+
+    @Override
+    public int Astar(T begin, T end) {
+        return Dijkstra(begin, end);
     }
 
     /**

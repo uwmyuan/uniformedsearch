@@ -87,4 +87,10 @@ public interface VertexInterface<T> {
      * @param other another object
      */
     boolean isEquals(Object other);
+
+    /**
+     * get h-value of the vertex
+     * @return 0 if Dijkstra, h-value if A-star
+     */
+    double getHeuristic();
 }

@@ -21,7 +21,9 @@ class Vertex<T> implements VertexInterface<T>, java.io.Serializable {
         previousVertex = null;
         cost = Double.MAX_VALUE;
     }
-
+    public double getHeuristic() {
+        return 0;
+    }
     @Override
     public T getLabel() {
         return label;

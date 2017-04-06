@@ -1,8 +1,12 @@
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Test {
     public static void main(String[] args) {
         //create the object of graph
         GraphInterface graph = new DirectedGraph();
-        /*//case 1: [GT] fig.7.3
+/*      //case 1: [GT] fig.7.3
         System.out.println("graph of fig. 7.3 [GT]");
         //Adding vertices...
         graph.addVertex("SFO");
@@ -60,7 +64,7 @@ public class Test {
         graph.Dijkstra("BWI", "SFO LAX");
         //trash graph
         graph.clear();
-        */
+
         //case 2: The Missionaries and Cannibals problem
         //n=3, m=2
         //Adding vertices...
@@ -85,7 +89,34 @@ public class Test {
         graph.addVertex(vertexEnd);
         graph.Dijkstra(start, end);
         graph.clear();
+*/
+
+        //case 3: The 1D Sliding/Jumping Tile Puzzle
+
+
+        TestBP BP2=new TestBP(2,10);
+
+        String start = "EBBAA";
+        String end = "AABBE";
+        BP2.testBPwithoutH(start, end, graph);
+        BP2.testBPwithH(start, end, graph);
+        //BP2.testBPmTimesWithH(graph);
+
+        TestBP BP4=new TestBP(4,10);
+        start = "EBBBBAAAA";
+        end = "AAAABBBBE";
+        BP4.testBPwithoutH(start, end, graph);
+        BP4.testBPwithH(start, end, graph);
+        //BP4.testBPmTimesWithH(graph);
+
+        TestBP BP8=new TestBP(8,10);
+        start = "EBBBBBBBBAAAAAAAA";
+        end = "AAAAAAAABBBBBBBBE";
+        BP8.testBPwithoutH(start, end, graph);
+        BP8.testBPwithH(start, end, graph);
+        //BP8.testBPmTimesWithH(graph);
 
     }
+
 
 }

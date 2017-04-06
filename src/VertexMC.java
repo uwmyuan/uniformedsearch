@@ -24,6 +24,10 @@ public class VertexMC<T> extends Vertex<T> {
         this.graph = g;
     }
 
+    public double getHeuristic() {
+        return 0;
+    }
+
     public void setBoatPosition(Position BoatPositionPosition) {
         BoatPosition = BoatPositionPosition;
     }
@@ -126,6 +130,6 @@ public class VertexMC<T> extends Vertex<T> {
             return false;
         }
         VertexMC<T> s = (VertexMC<T>) obj;
-        return (s.getLabel()==getLabel());
+        return (s.getLabel() == getLabel());
     }
 }

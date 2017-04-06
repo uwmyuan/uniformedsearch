@@ -6,4 +6,5 @@ public interface GraphAlgorithmsInterface<T> {
      * @return 0 if success, 1 if fail
      */
     int Dijkstra(T begin, T end);
+    int Astar(T begin,T end);
 }
