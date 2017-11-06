@@ -25,15 +25,14 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
     public void addVertex(T vertexLabel) {
         //if the vertexLabel is the same, the new vertex will replace the old one based on LinkedHashMap.put().
         //Adjacent edges are stored by a new LinkedList
-        vertices.put(vertexLabel, new Vertex(vertexLabel) {
-        });
+        vertices.put(vertexLabel, new Vertex(vertexLabel));
     }
 
     @Override
     public void addVertex(VertexInterface<T> vertex) {
-        if (!vertices.containsKey(vertex.getLabel()))
+        if (!vertices.containsKey(vertex.getLabel())) {
             vertices.put(vertex.getLabel(), vertex);
-
+        }
     }
 
     @Override
@@ -108,7 +107,7 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
         VertexInterface<T> endVertex = null;
 
         //input the begin vertex and the goal set
-        List<VertexInterface<T>> endVertices = new ArrayList<>();
+        Set<T> endVertices = new HashSet<>();
         try {
             beginVertex = vertices.get(begin);
 
@@ -117,25 +116,23 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
             vertexQueue.add(beginVertex);
             String[] labelGroup = ((String) end).split(" ");
             for (String str : labelGroup)
-                endVertices.add(vertices.get(str));
+                endVertices.add((T) str);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //create the set E
-        List<VertexInterface<T>> expandedVertices = new ArrayList<>();
+        Set<T> expandedVertices = new HashSet<>();
 
         //starting searching iterations
         while (!done && !vertexQueue.isEmpty()) {
             VertexInterface<T> frontVertex = vertexQueue.poll();
             //check if any goal reached
-            for (VertexInterface<T> v : endVertices) {
-                if (v.isEquals(frontVertex)) {
-                    done = true;
-                    endVertex = frontVertex;
-                }
+            expandedVertices.add(frontVertex.getLabel());
+            if (endVertices.contains(frontVertex.getLabel())) {
+                done = true;
+                endVertex = frontVertex;
             }
-            expandedVertices.add(frontVertex);
             Iterator<Vertex.Edge> edges = frontVertex.getEdgeIterator();
             while (!done && edges.hasNext()) {
                 Vertex.Edge nextEdge = edges.next();
@@ -155,15 +152,16 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
                 }
                 //case ui in E
                 //**never used
-                if (expandedVertices.contains(nextEdge)) {
-                    if (nextEdge.getEndVertex().getCost() > frontVertex.getCost() + nextEdge.getWeight()) {
-                        nextEdge.getEndVertex().setPredecessor(frontVertex);
-                        expandedVertices.remove(expandedVertices.indexOf(nextEdge.getEndVertex()));
-                        vertexQueue.add(nextEdge.getEndVertex());
-                    }
-                }
+//                if (expandedVertices.containsValue(nextEdge)) {
+//                    if (nextEdge.getEndVertex().getCost() > frontVertex.getCost() + nextEdge.getWeight()) {
+//                        nextEdge.getEndVertex().setPredecessor(frontVertex);
+//                        expandedVertices.remove(nextEdge.getEndVertex());
+//                        vertexQueue.add(nextEdge.getEndVertex());
+//                    }
+//                }
 
             }
+
         }
         if (!done) {
             return 1;//return 1 for fail
@@ -173,7 +171,7 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
                 double pathLength;
                 List<T> path = new ArrayList<>();
                 //record the cost of the shortest path
-                pathLength = endVertex.getCost();
+                pathLength = endVertex.getCost(); 
                 //record the shortest path
                 path.add(endVertex.getLabel());
                 VertexInterface<T> vertex = endVertex;
@@ -186,7 +184,8 @@ public class DirectedGraph<T> implements GraphInterface<T>, java.io.Serializable
                 Collections.reverse(sp);
                 System.out.println("The shortest path is " + sp.toString());
                 System.out.println("The length of the shortest path is " + pathLength);
-                System.out.println("The number of visited vertices is " + expandedVertices.size());
+                System.out.println("The depth of the shortest path is " + path.size());
+                System.out.println("The number of expanded vertices is " + expandedVertices.size());
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -1,11 +1,8 @@
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 class Vertex<T> implements VertexInterface<T>, java.io.Serializable {
 
-    List<Edge> edgeList;//list of edges
+    Set<Edge> edgeList;//list of edges
     private T label;//T: String,Integer
     private VertexInterface<T> previousVertex;
     private double cost;//path cost to this vertex
@@ -17,7 +14,7 @@ class Vertex<T> implements VertexInterface<T>, java.io.Serializable {
      */
     public Vertex(T vertexLabel) {
         label = vertexLabel;
-        edgeList = new LinkedList<>();
+        edgeList = new HashSet<>();
         previousVertex = null;
         cost = Double.MAX_VALUE;
     }

@@ -1,7 +1,3 @@
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public class Test {
     public static void main(String[] args) {
         //create the object of graph
@@ -92,29 +88,44 @@ public class Test {
 */
 
         //case 3: The 1D Sliding/Jumping Tile Puzzle
+        String start;
+        String end;
 
+//        System.out.println("n=2");
+//        TestBP BP2 = new TestBP(2, 10);
+//        start = "EBBAA";
+//        end = "AABBE";
+//        System.out.println("Initial state: " + start);
+//        BP2.testBPwithoutH(start, end, graph);
+//        BP2.testBPwithH(start, end, graph);
+//        BP2.testBPmTimes(graph);
+//
+//        System.out.println("n=4");
+//        TestBP BP4 = new TestBP(4, 10);
+//        start = "EBBBBAAAA";
+//        end = "AAAABBBBE";
+//        System.out.println("Initial state: " + start);
+//        BP4.testBPwithoutH(start, end, graph);
+//        BP4.testBPwithH(start, end, graph);
+//        BP4.testBPmTimes(graph);
+//
+//        System.out.println("n=8");
+//        TestBP BP8 = new TestBP(8, 10);
+//        start = "EBBBBBBBBAAAAAAAA";
+//        end = "AAAAAAAABBBBBBBBE";
+//        System.out.println("Initial state: " + start);
+//        BP8.testBPwithoutH(start, end, graph);
+//        BP8.testBPwithH(start, end, graph);
+//        BP8.testBPmTimes(graph);
 
-        TestBP BP2=new TestBP(2,10);
-
-        String start = "EBBAA";
-        String end = "AABBE";
-        BP2.testBPwithoutH(start, end, graph);
-        BP2.testBPwithH(start, end, graph);
-        //BP2.testBPmTimesWithH(graph);
-
-        TestBP BP4=new TestBP(4,10);
-        start = "EBBBBAAAA";
-        end = "AAAABBBBE";
-        BP4.testBPwithoutH(start, end, graph);
-        BP4.testBPwithH(start, end, graph);
-        //BP4.testBPmTimesWithH(graph);
-
-        TestBP BP8=new TestBP(8,10);
-        start = "EBBBBBBBBAAAAAAAA";
-        end = "AAAAAAAABBBBBBBBE";
-        BP8.testBPwithoutH(start, end, graph);
-        BP8.testBPwithH(start, end, graph);
-        //BP8.testBPmTimesWithH(graph);
+        System.out.println("n=9");
+        TestBP BP9 = new TestBP(9, 1);
+        start = "EBBBBBBBBBAAAAAAAAA";
+        end = "AAAAAAAAABBBBBBBBBE";
+        System.out.println("Initial state: " + start);
+        //BP9.testBPwithoutH(start, end, graph);
+        BP9.testBPwithH(start, end, graph);
+        //BP9.testBPmTimes(graph);
 
     }
 

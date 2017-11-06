@@ -25,7 +25,7 @@ public class VertexBP<T> extends Vertex<T> {
     /**
      * calculate Hamming Distance between vertexLabel and endLabel
      */
-    public void getDistance() {
+    public void setHeuristic() {
         String str1 = (String) getLabel();
         String str2 = (String) getEndLabel();
         int distance = 0;
@@ -38,7 +38,7 @@ public class VertexBP<T> extends Vertex<T> {
                 }
             }
         }
-        Heuristic = distance;
+        Heuristic = distance / 2;
     }
 
     @Override
@@ -61,8 +61,10 @@ public class VertexBP<T> extends Vertex<T> {
 
     void getNewVertices() {
         int i = getE();
-        int[] q = {1, -1};
-        for (int k : q) {
+        if (i == -1) {
+            System.out.println("not found E position");
+        }
+        for (int k : new int[]{1, -1}) {
             for (int j = 1; j <= 4; j++) {
                 StringBuffer tiles = new StringBuffer((String) getLabel());
                 if (0 <= i + k * j && i + k * j < tiles.length()) {
@@ -70,8 +72,11 @@ public class VertexBP<T> extends Vertex<T> {
                     tiles.setCharAt(i + k * j, 'E');
                     //create new vertex
                     VertexBP<T> v = new VertexBP<>((T) tiles.toString(), getEndLabel(), graph);
-                    graph.addVertex(v);
-                    graph.addEdge(this.getLabel(), v.getLabel(), 1);
+                    if (v.getLabel().toString().length() == this.getLabel().toString().length()) {
+                        graph.addVertex(v);
+                        graph.addEdge(this.getLabel(), v.getLabel(), (j <= 1) ? 1 : (j - 1));
+
+                    }
                 }
             }
         }
@@ -82,15 +87,15 @@ public class VertexBP<T> extends Vertex<T> {
         int[] q = {1, -1};
         for (int k : q) {
             for (int j = 1; j <= 4; j++) {
-                StringBuffer tiles = new StringBuffer((String) getLabel());
-                if (0 <= i + k * j && i + k * j < tiles.length()) {
+                if (0 <= i + k * j && i + k * j < getLabel().toString().length()) {
+                    StringBuffer tiles = new StringBuffer((String) getLabel());
                     tiles.setCharAt(i, tiles.charAt(i + k * j));
                     tiles.setCharAt(i + k * j, 'E');
                     //create new vertex
                     VertexBP<T> v = new VertexBP<>((T) tiles.toString(), getEndLabel(), graph);
-                    v.getDistance();
+                    v.setHeuristic();
                     graph.addVertex(v);
-                    graph.addEdge(this.getLabel(), v.getLabel(), 1 + v.getHeuristic() - this.Heuristic);
+                    graph.addEdge(this.getLabel(), v.getLabel(), ((j <= 1) ? 1 : (j - 1)) + v.getHeuristic() - this.getHeuristic());
                 }
             }
         }

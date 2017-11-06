@@ -13,19 +13,16 @@ public class TestBP {
         this.m = m;
     }
 
-    public void testBPmTimesWithoutH(GraphInterface graph) {
+    public void testBPmTimes(GraphInterface graph) {
         for (int i = 0; i < m; i++) {
             String[] s = createNewCaseBP(n);
+            System.out.println("Random case " + i + ":");
+            System.out.println(new StringBuilder().append("Initial state: ").append(s[0]).toString());
             testBPwithoutH(s[0], s[1], graph);
-        }
-    }
-
-    public void testBPmTimesWithH(GraphInterface graph) {
-        for (int i = 0; i < m; i++) {
-            String[] s = createNewCaseBP(n);
             testBPwithH(s[0], s[1], graph);
         }
     }
+
 
     public void testBPwithoutH(String start, String end, GraphInterface graph) {
         System.out.println("without heuristic:");
@@ -41,7 +38,7 @@ public class TestBP {
     public void testBPwithH(String start, String end, GraphInterface graph) {
         System.out.println("with heuristic");
         VertexBP vertexStart = new VertexBP(start, end, graph);
-        vertexStart.getDistance();
+        vertexStart.setHeuristic();
         vertexStart.setCost(vertexStart.getHeuristic());
         graph.addVertex(vertexStart);
         VertexBP vertexEnd = new VertexBP(end, end, graph);
@@ -63,7 +60,7 @@ public class TestBP {
         List<Character> characterList = end.chars().mapToObj(e -> (char) e).collect(Collectors.toList());
         Collections.shuffle(characterList);
 
-        String[] se = {characterList.toString().replaceAll("[\\[\\]]", "").replaceAll(", ",""), end.toString()};
+        String[] se = {characterList.toString().replaceAll("[\\[\\]]", "").replaceAll(", ", ""), end.toString()};
         return se;
     }
 }
